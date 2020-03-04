@@ -1,0 +1,42 @@
+@startuml
+skinparam actor {
+	BackgroundColor White
+	ArrowColor Black
+	BorderColor Black
+}
+skinparam usecase {
+	BackgroundColor White
+	ArrowColor Black
+	BorderColor Black
+}
+left to right direction
+actor M as "Работник УМУ"
+actor M0 as "Человек"
+actor G as "Сотрудник кафедры"
+actor S as "Сотрудник деканата"
+actor P as "Программный модуль"
+actor P0 as "Программный модуль"
+
+package APP as "Подготовка сведений к составлению расписания"{
+usecase A as "Подготовка списка учебных групп"
+usecase B as "Подготовка данных о преподавательском составе"
+usecase C as "Подготовка учебных занятий, аудиторного фонда и нагрузок"
+usecase D as "Формирование расписания"
+}
+
+M0 --|> G
+M0 --|> M
+M0 --|> S
+P0 --|> P 
+
+M --|> C
+M --|> D
+G --|> B
+S --|> A
+
+A --|> D
+B --|> D
+C --|> D
+
+D <|-- P0
+@enduml
